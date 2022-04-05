@@ -24,12 +24,7 @@
       [dataSource]="dataSource"
       (matSortChange)="announceSortChange($event)"
     >
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell mat-sort-header *matHeaderCellDef>No.</th>
-        <td mat-cell *matCellDef="let element">{{ element.position}}</td>
-      </ng-container>
-  
+      
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell mat-sort-header *matHeaderCellDef>Nome</th>

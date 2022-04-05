@@ -1,10 +1,10 @@
-import { TableService } from './table.service';
 import { Component, ViewChild, AfterViewInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { People } from './people.model';
+import table from './table';
 
 
 @Component({
@@ -20,15 +20,18 @@ export class TableComponent implements AfterViewInit {
     phoneNumber: "(12) 9 9999-9990"
   }
 
+  data = table;
+
   /* Function to add person and phone number */
 
   createPerson(){
-    this.tableService.create(this.person).subscribe(() => console.log('botão fuciona, nego'))
+    this.data.push(this.person)
+    console.log(this.data)
   }
 
-  constructor(private tableService: TableService, private _liveAnnouncer: LiveAnnouncer) {}
+  constructor(private _liveAnnouncer: LiveAnnouncer) {}
 
-  displayedColumns: string[] = ['position', 'name', 'phoneNumber'];
+  displayedColumns: string[] = ['name', 'phoneNumber'];
   dataSource: any;
 
   /* Filter implementation */
@@ -46,10 +49,9 @@ export class TableComponent implements AfterViewInit {
   /* For avoiding trouble of reponse time, used afterviewinit with liveAnnouncer. Live announcer ensures the display of the sorted table*/
 
   ngAfterViewInit() {
-    this.tableService.read().subscribe((response: any) =>
-    {this.dataSource = new MatTableDataSource(response); /* getting the data of the table.json, to simulate an API consumption */
+    this.dataSource = new MatTableDataSource(this.data); /* getting the data of the table.json, to simulate an API consumption */
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;})
+    this.dataSource.paginator = this.paginator
   }
 
   announceSortChange(sortState: Sort) {
