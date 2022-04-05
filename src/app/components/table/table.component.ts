@@ -46,9 +46,9 @@ export class TableComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  /* For avoiding trouble of reponse time, used afterviewinit with liveAnnouncer. Live announcer ensures the display of the sorted table*/
+  /* To avoid trouble of reponse time, used afterviewinit with liveAnnouncer. Live announcer ensures the display of the sorted table*/
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.dataSource = new MatTableDataSource(this.data); /* getting the data of the table.json, to simulate an API consumption */
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator

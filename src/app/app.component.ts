@@ -4,7 +4,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   template: `
-    <app-table></app-table> 
+    <app-form></app-form>
+    <app-table></app-table>
   `,
   styles: []
 })

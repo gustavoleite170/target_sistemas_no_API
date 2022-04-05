@@ -1,10 +1,53 @@
 <form>
-  <mat-form-field class="form" appearance="fill">
-    <input matInput placeholder="Nome" />
-  </mat-form-field>
-  <mat-form-field class="form" appearance="fill">
-    <mat-label>Telephone</mat-label>
-    <span matPrefix>+55 &nbsp;</span>
-    <input type="tel" matInput placeholder="(81) 9 9854-5101" />
-  </mat-form-field>
+  <div class="form-wrapper">
+    <mat-form-field class="form" appearance="fill">
+      <input
+        type="text"
+        matInput
+        [(ngModel)]="name"
+        name="name"
+        placeholder="Nome"
+        required
+      />
+      <button
+        *ngIf="name"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearName()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="nameFormControl.hasError('required')">
+        <strong>Obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form" appearance="fill">
+      <mat-label>Número de Telefone</mat-label>
+      <span matPrefix>+55 &nbsp;</span>
+      <input
+        type="tel"
+        matInput
+        [(ngModel)]="phone"
+        name="phone"
+        placeholder="(xx) x xxxx-xxxx"
+        required
+      />
+      <button
+        *ngIf="phone"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="clearPhone()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="phoneFormControl.hasError('required')">
+        <strong>Obrigatório</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="form__buttons">
+    <button mat-raised-button color="primary">Salvar</button>
+  </div>
 </form>
