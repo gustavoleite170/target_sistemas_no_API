@@ -4,19 +4,27 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
+import { People } from './people.model';
 
-
-export class User {
-  userName: string;
-  age: number;
-}
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
 export class TableComponent implements AfterViewInit {
+
+  person: People = {
+    name: "Jubiscreuza Tavares",
+    phoneNumber: "(12) 9 9999-9990"
+  }
+
+  /* Function to add person and phone number */
+
+  createPerson(){
+    this.tableService.create(this.person).subscribe(() => console.log('botão fuciona, nego'))
+  }
 
   constructor(private tableService: TableService, private _liveAnnouncer: LiveAnnouncer) {}
 

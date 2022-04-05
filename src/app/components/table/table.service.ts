@@ -14,11 +14,11 @@ export class TableService {
 
   constructor(private http: HttpClient) { }
 
-  showOnConsole(msg: string): void{
-    console.log(msg);
-  }
-
   read(): Observable<People[]>{
     return this.http.get<People[]>(this.generalUrl)
+  }
+
+  create(people: People): Observable<People>{
+    return this.http.post<People>(this.generalUrl, people)
   }
 }

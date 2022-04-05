@@ -1,10 +1,15 @@
-table {
-  width: 100%;
+main{
+  padding: 30px
 }
 
 mat-form-field{
   width: 100%;
 }
+
+table {
+  width: 100%;
+}
+
 
 .table-wrapper{
   width: 1200px;

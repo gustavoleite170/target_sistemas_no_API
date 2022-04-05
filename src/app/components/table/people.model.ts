@@ -1,5 +1,5 @@
 export interface People{
-  position: number, 
+  position?: number, 
   name: string, 
   phoneNumber: string
 }
