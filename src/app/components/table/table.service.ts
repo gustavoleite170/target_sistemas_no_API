@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 
 export class TableService {
 
-  generalUrl= "./table.json"
+  generalUrl= "assets/table.json"
 
   constructor(private http: HttpClient) { }
 
