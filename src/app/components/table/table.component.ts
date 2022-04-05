@@ -1,10 +1,9 @@
 import { TableService } from './table.service';
-import { Component, ViewChild, AfterViewInit, Input, OnInit} from '@angular/core';
+import { Component, ViewChild, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort, Sort } from '@angular/material/sort';
+import { MatSort} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
 import { People } from './people.model';
-import table from './table';
 
 
 @Component({
@@ -13,31 +12,22 @@ import table from './table';
   styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements /* AfterViewInit, */ OnInit {
+export class TableComponent implements OnInit {
 
-  data = table;
   displayedColumns: string[] = ['name', 'phoneNumber'];
   dataSource: any;
   people: People[];
 
-  /* Function to add person and phone number */
-
   constructor(private tableService: TableService) {}
 
   ngOnInit(): void {
-      this.tableService.read().subscribe(response => {
-        this.people = response;
-        console.log(this.people)
-      })
-  }
-
-  
-
-  /* Filter implementation */
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    /* Consuming API, doing filtering and pagination  */
+    this.tableService.read().subscribe(response => {
+      this.dataSource = new MatTableDataSource(response);
+      console.log(this.dataSource)
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator
+    })
   }
 
   /* Sort and pagination Implementation */
@@ -45,14 +35,11 @@ export class TableComponent implements /* AfterViewInit, */ OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  /* To avoid trouble of reponse time, used afterviewinit with liveAnnouncer. Live announcer ensures the display of the sorted table*/
+  /* Filter implementation */
 
-  /* ngAfterViewInit(): void { */
-    /* this.dataSource = new MatTableDataSource(this.data); */
-    
-    /* getting the data of the table.json, to simulate an API consumption */
-    /* this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator
-  } */
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
    
 }
