@@ -1,4 +1,4 @@
-<section class="table-wrapper">
+<section class="table-wrapper mat-elevation-z8">
   <mat-form-field appearance="standard">
     <mat-label>Filter</mat-label>
     <input
@@ -13,7 +13,6 @@
     mat-table
     matSort
     [dataSource]="dataSource"
-    class="mat-elevation-z8"
     (matSortChange)="announceSortChange($event)"
   >
     <!-- Position Column -->
@@ -40,7 +39,9 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 
-  <div class="table-form">
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" aria-label="Select page of users"></mat-paginator>
+
+  <!-- <div class="table-form">
     <mat-form-field apparence="legacy">
       <mat-label>Name</mat-label>
       <input
@@ -65,5 +66,5 @@
     </mat-form-field>
   </div>
 
-  <button mat-button type="button" (click)="addName()">Submit</button>
+  <button mat-button type="button" (click)="addName()">Submit</button> -->
 </section>
