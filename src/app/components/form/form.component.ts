@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -35,6 +35,27 @@ export class FormComponent implements OnInit {
   clearPhone(){
     this.phone= '';
   }
+
+  info: Object;
+
+  infoJoin(){
+    if(this.name !== '' && this.phone !== ''){
+      this.info = {
+        name: this.name,
+        phone: this.phone
+      }
+      this.sendInfo();
+    }
+  }
+
+  /* Send information to table */
+
+  @Output() msgToTable = new EventEmitter<any>();
+
+  sendInfo() {
+    this.msgToTable.emit(this.info);
+  }
+  
 
   constructor() { }
 

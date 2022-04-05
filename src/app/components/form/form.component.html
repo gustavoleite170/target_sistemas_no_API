@@ -27,11 +27,13 @@
       <span matPrefix>+55 &nbsp;</span>
       <input
         type="tel"
+        pattern="[0-9]{2} 9 [0-9]{4}-[0-9]{4}"
         matInput
         [(ngModel)]="phone"
         name="phone"
-        placeholder="(xx) x xxxx-xxxx"
+        placeholder="xx 9 xxxx-xxxx"
         required
+        style="text-decoration: none"
       />
       <button
         *ngIf="phone"
@@ -48,6 +50,8 @@
     </mat-form-field>
   </div>
   <div class="form__buttons">
-    <button mat-raised-button color="primary">Salvar</button>
+    <button mat-raised-button color="primary" (click)="infoJoin()">
+      Salvar
+    </button>
   </div>
 </form>

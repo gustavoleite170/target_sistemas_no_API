@@ -1,8 +1,8 @@
-import { Component, ViewChild, AfterViewInit} from '@angular/core';
+import { TableService } from './table.service';
+import { Component, ViewChild, AfterViewInit, Input, OnInit} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { People } from './people.model';
 import table from './table';
 
@@ -13,26 +13,25 @@ import table from './table';
   styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements AfterViewInit {
-
-  person: People = {
-    name: "Jubiscreuza Tavares",
-    phoneNumber: "(12) 9 9999-9990"
-  }
+export class TableComponent implements /* AfterViewInit, */ OnInit {
 
   data = table;
+  displayedColumns: string[] = ['name', 'phoneNumber'];
+  dataSource: any;
+  people: People[];
 
   /* Function to add person and phone number */
 
-  createPerson(){
-    this.data.push(this.person)
-    console.log(this.data)
+  constructor(private tableService: TableService) {}
+
+  ngOnInit(): void {
+      this.tableService.read().subscribe(response => {
+        this.people = response;
+        console.log(this.people)
+      })
   }
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) {}
-
-  displayedColumns: string[] = ['name', 'phoneNumber'];
-  dataSource: any;
+  
 
   /* Filter implementation */
 
@@ -48,17 +47,12 @@ export class TableComponent implements AfterViewInit {
 
   /* To avoid trouble of reponse time, used afterviewinit with liveAnnouncer. Live announcer ensures the display of the sorted table*/
 
-  ngAfterViewInit(): void {
-    this.dataSource = new MatTableDataSource(this.data); /* getting the data of the table.json, to simulate an API consumption */
-    this.dataSource.sort = this.sort;
+  /* ngAfterViewInit(): void { */
+    /* this.dataSource = new MatTableDataSource(this.data); */
+    
+    /* getting the data of the table.json, to simulate an API consumption */
+    /* this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator
-  }
-
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
-    } else {
-      this._liveAnnouncer.announce('Sorting cleared');
-    }
-  }    
+  } */
+   
 }
