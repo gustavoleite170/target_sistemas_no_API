@@ -1,0 +1,12 @@
+table {
+  width: 100%;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+.table-wrapper{
+  width: 1200px;
+  margin: 0 auto;
+}
