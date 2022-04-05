@@ -1,4 +1,7 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { People } from './people.model';
+import { TableService } from './table.service';
+import { Observable } from 'rxjs';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
@@ -33,10 +36,24 @@ const ELEMENT_DATA: Person[] = [
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements AfterViewInit, OnInit {
+
+  constructor(private tableService: TableService, private _liveAnnouncer: LiveAnnouncer) {}
 
   displayedColumns: string[] = ['position', 'name', 'phoneNumber'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+
+  people: People
+
+
+  /* Getting data from json(simulating API) */
+  
+  ngOnInit(): void {
+    this.tableService.read().subscribe((response: any) =>
+    this.people = response.person)
+
+    console.log(this.people);
+  }
 
 
   /* Filter implementation */
@@ -50,9 +67,7 @@ export class TableComponent implements AfterViewInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _liveAnnouncer: LiveAnnouncer) { 
-    
-  }
+  
 
   /* For avoiding trouble of reponse time, used afterviewinit with liveAnnouncer. Live announcer ensures the display of the sorted table*/
 
