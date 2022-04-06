@@ -14,7 +14,7 @@ import { People } from './people.model';
 
 export class TableComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'phoneNumber'];
+  displayedColumns: string[] = ['name', 'phoneNumber', 'action'];
   dataSource: any;
   people: People[];
 
@@ -24,7 +24,6 @@ export class TableComponent implements OnInit {
     /* Consuming API, doing filtering and pagination  */
     this.tableService.read().subscribe(response => {
       this.dataSource = new MatTableDataSource(response);
-      console.log(this.dataSource)
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
     })

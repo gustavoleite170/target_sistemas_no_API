@@ -21,4 +21,9 @@ export class TableService {
   create(people: People): Observable<People>{
     return this.http.post<People>(this.generalUrl, people)
   }
+
+  delete(id: string): Observable<People>{
+    const url = `${this.generalUrl}/${id}`
+    return this.http.delete<People>(url)
+  }
 }

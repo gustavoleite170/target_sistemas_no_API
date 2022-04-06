@@ -12,7 +12,7 @@ mat-form-field:nth-child(2){
 
 .form-wrapper{
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 30px;
   width: 1200px;
   margin: 40px auto 0;

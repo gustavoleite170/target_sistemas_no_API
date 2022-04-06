@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { People } from './../table/people.model';
+import { TableService } from './../table/table.service';
+import { Component, OnInit} from '@angular/core';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -25,41 +27,33 @@ export class FormComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
 
   /* Clear buttons */
-  name = '';
-  phone= ''
+  person: People = {
+    name: "",
+    phoneNumber: ""
+  }
 
   clearName(){
-    this.name= '';
+    this.person.name= '';
   }
 
   clearPhone(){
-    this.phone= '';
+    this.person.phoneNumber= '';
   }
 
-  info: Object;
-
-  infoJoin(){
-    if(this.name !== '' && this.phone !== ''){
-      this.info = {
-        name: this.name,
-        phone: this.phone
-      }
-      this.sendInfo();
-    }
-  }
-
-  /* Send information to table */
-
-  @Output() msgToTable = new EventEmitter<any>();
-
-  sendInfo() {
-    this.msgToTable.emit(this.info);
-  }
-  
-
-  constructor() { }
+  constructor(private tableService: TableService) { }
 
   ngOnInit(): void {
   }
+
+  createPerson(): void {
+    if (this.person.name !== "" && 
+    this.person.phoneNumber !== ""){
+      this.tableService.create(this.person).subscribe(() =>
+      window.location.reload())
+    }
+  }
+  
+
+  
 
 }

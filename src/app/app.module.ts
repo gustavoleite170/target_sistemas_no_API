@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
 import { FormComponent } from './components/form/form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
