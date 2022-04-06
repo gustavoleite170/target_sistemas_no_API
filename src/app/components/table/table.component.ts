@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   people: People[];
   delPerson: People;
 
-  constructor(private tableService: TableService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private tableService: TableService) {}
 
   ngOnInit(): void {
     /* Consuming API, doing filtering and pagination  */
@@ -30,14 +30,6 @@ export class TableComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
     })
-
-    /* Finding the element in order to delete*/
-    const id = +this.route.snapshot.paramMap.get('id');
-    if (id > 0)
-    this.tableService.readById(id).subscribe((response) => {
-      this.delPerson = response;
-    });
-
   }
 
   /* Sort and pagination Implementation */
@@ -50,14 +42,6 @@ export class TableComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  deletePerson(): void {
-    this.tableService.delete(this.delPerson.id).subscribe(() => {
-      this.router.navigate(['/1'])
-      window.location.reload()
-    }
-    )
   }
    
 }

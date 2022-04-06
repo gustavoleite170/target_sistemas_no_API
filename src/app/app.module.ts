@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { FormComponent } from './components/form/form.component';
+import { DeleteComponent } from './components/delete/delete.component';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './components/table/table.component';
-
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -14,15 +16,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
-import { FormComponent } from './components/form/form.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MatCardModule } from  '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
-    FormComponent
+    FormComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatPaginatorModule, 
     MatFormFieldModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
