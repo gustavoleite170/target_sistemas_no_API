@@ -24,6 +24,7 @@ export class TableComponent implements OnInit {
     /* Consuming API, doing filtering and pagination  */
     this.tableService.read().subscribe(response => {
       this.dataSource = new MatTableDataSource(response);
+      
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
     })

@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatIconModule} from '@angular/material/icon';
 import { FormComponent } from './components/form/form.component';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { FormComponent } from './components/form/form.component';
     HttpClientModule,
     MatPaginatorModule, 
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
