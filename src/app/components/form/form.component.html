@@ -1,12 +1,13 @@
 <form>
   <div class="form-wrapper">
     <mat-form-field class="form" appearance="fill">
+      <mat-label>Nome</mat-label>
       <input
         type="text"
         matInput
         [(ngModel)]="person.name"
         name="name"
-        placeholder="Nome"
+        placeholder="Ex. Bruno Silva"
         required
       />
       <button
@@ -24,7 +25,6 @@
     </mat-form-field>
     <mat-form-field class="form" appearance="fill">
       <mat-label>Número de Telefone</mat-label>
-      <span matPrefix>+55 &nbsp;</span>
       <input
         type="tel"
         ng-pattern="^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$"
