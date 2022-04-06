@@ -33,6 +33,7 @@ export class TableComponent implements OnInit {
 
     /* Finding the element in order to delete*/
     const id = +this.route.snapshot.paramMap.get('id');
+    if (id > 0)
     this.tableService.readById(id).subscribe((response) => {
       this.delPerson = response;
     });
@@ -52,8 +53,11 @@ export class TableComponent implements OnInit {
   }
 
   deletePerson(): void {
-    this.tableService.delete(this.delPerson.id).subscribe(() => 
-    this.router.navigate(['']))
+    this.tableService.delete(this.delPerson.id).subscribe(() => {
+      this.router.navigate(['/1'])
+      window.location.reload()
+    }
+    )
   }
    
 }
