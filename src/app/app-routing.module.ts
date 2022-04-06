@@ -4,8 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', component: TableComponent }
-];
+  { path: '', component: TableComponent },
+  { path: ':id', component: TableComponent }
+]
+;
 
 
 @NgModule({

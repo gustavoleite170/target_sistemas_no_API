@@ -30,9 +30,9 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell mat-sort-header *matHeaderCellDef>Excluir</th>
         <td mat-cell *matCellDef="let element">
-          <button mat-icon-button color="warn">
+          <a mat-icon-button color="warn" (click)="deletePerson()" routerLink="">
             <mat-icon>delete</mat-icon>
-          </button>
+          </a>
         </td>
       </ng-container>
 

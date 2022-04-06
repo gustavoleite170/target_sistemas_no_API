@@ -50,5 +50,10 @@ export class TableComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  deletePerson(): void {
+    this.tableService.delete(this.delPerson.id).subscribe(() => 
+    window.location.reload())
+  }
    
 }
