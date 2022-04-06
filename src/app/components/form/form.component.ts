@@ -32,6 +32,8 @@ export class FormComponent implements OnInit {
     phoneNumber: ""
   }
 
+  regexp = new RegExp('^1\d\d(\d\d)?$|^0800 ?\d{3} ?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}$')
+
   clearName(){
     this.person.name= '';
   }
@@ -47,7 +49,7 @@ export class FormComponent implements OnInit {
 
   createPerson(): void {
     if (this.person.name !== "" && 
-    this.person.phoneNumber !== ""){
+    (this.person.phoneNumber !== "" && this.regexp.test(this.person.phoneNumber))){
       this.tableService.create(this.person).subscribe(() =>
       window.location.reload())
     }
