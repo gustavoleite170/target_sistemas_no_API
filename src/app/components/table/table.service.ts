@@ -18,11 +18,16 @@ export class TableService {
     return this.http.get<People[]>(this.generalUrl)
   }
 
+  readById(id: number): Observable<People> {
+    const url = `${this.generalUrl}/${id}`;
+    return this.http.get<People>(url);
+  }
+
   create(people: People): Observable<People>{
     return this.http.post<People>(this.generalUrl, people)
   }
 
-  delete(id: string): Observable<People>{
+  delete(id: number): Observable<People>{
     const url = `${this.generalUrl}/${id}`
     return this.http.delete<People>(url)
   }
