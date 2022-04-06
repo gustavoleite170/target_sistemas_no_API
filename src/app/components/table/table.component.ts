@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { People } from './people.model';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 
 @Component({
@@ -20,7 +20,7 @@ export class TableComponent implements OnInit {
   people: People[];
   delPerson: People;
 
-  constructor(private tableService: TableService, private route: ActivatedRoute) {}
+  constructor(private tableService: TableService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     /* Consuming API, doing filtering and pagination  */
@@ -53,7 +53,7 @@ export class TableComponent implements OnInit {
 
   deletePerson(): void {
     this.tableService.delete(this.delPerson.id).subscribe(() => 
-    window.location.reload())
+    this.router.navigate(['']))
   }
    
 }
