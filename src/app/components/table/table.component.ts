@@ -18,8 +18,7 @@ export class TableComponent implements OnInit {
   displayedColumns: string[] = ['name', 'phoneNumber', 'action'];
   dataSource: any;
   people: People[];
-  delPerson: People;
-
+  
   constructor(private tableService: TableService) {}
 
   ngOnInit(): void {

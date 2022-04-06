@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { People } from '../table/people.model';
 import { TableService } from '../table/table.service';
 
 @Component({
@@ -9,7 +10,9 @@ import { TableService } from '../table/table.service';
 })
 export class DeleteComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router,, private tableService: TableService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private tableService: TableService) { }
+
+  delPerson: People;
 
   ngOnInit(): void {
     /* Finding the element in order to delete*/
@@ -21,10 +24,14 @@ export class DeleteComponent implements OnInit {
 
   deletePerson(): void {
     this.tableService.delete(this.delPerson.id).subscribe(() => {
-      this.router.navigate(['/1'])
+      this.router.navigate([''])
       setTimeout(() => window.location.reload(), 500)
     }
     )
+  }
+
+  cancel(): void {
+    this.router.navigate(['']);
   }
 
 }
