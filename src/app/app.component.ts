@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <app-form></app-form>
-    <app-table></app-table>
+    <router-outlet></router-outlet>
   `,
   styles: []
 })

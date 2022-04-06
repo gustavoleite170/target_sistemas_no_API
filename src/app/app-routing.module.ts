@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: 'heroes', component: TableComponent }
+  { path: '', component: TableComponent }
 ];
 
 
