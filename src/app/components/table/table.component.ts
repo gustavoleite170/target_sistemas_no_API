@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort} from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { People } from './people.model';
-import { ActivatedRoute, Router } from "@angular/router";
 import people from './tgt_sistemas_back.json';
 import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -53,7 +52,6 @@ export class TableComponent implements OnInit {
   }
 
   createPerson(): void {
-    console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
     if (this.person.name !== "" && 
     (this.person.phoneNumber !== "" && this.regexp.test(this.person.phoneNumber))){
       const join = {
@@ -66,7 +64,6 @@ export class TableComponent implements OnInit {
       this.dataSource.paginator = this.paginator
       alert("Informação adicionada com sucesso")
     }
-    console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
   }
  
   /* +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
@@ -91,8 +88,17 @@ export class TableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  deletePerson(){
-    alert(`Informação deletada com sucesso`)
+  /* Delete information name and number */
+
+  deletePerson(element){
+    console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
+    const removed = this.data.filter((value) => value !== element)
+    this.data = removed;
+    this.dataSource = new MatTableDataSource(this.data);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator
+    alert(`Informações de ${element.name} deletadas com sucesso`)
+    console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
   }
 
   /* +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
@@ -113,7 +119,6 @@ export class TableComponent implements OnInit {
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
     })
-    console.log(this.data)
   }
    
 }
