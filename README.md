@@ -1,6 +1,6 @@
-# TargetSistemas
+# Target Sistemas No API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+This project is a version of the original [Target Sistemas Project](https://github.com/gustavoleite170/target_sistemas) that doesn't use an API. "Light version", if you may say.
 
 ## Development server
 
