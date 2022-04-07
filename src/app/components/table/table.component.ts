@@ -64,7 +64,7 @@ export class TableComponent implements OnInit {
       this.dataSource = new MatTableDataSource(this.data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator
-      alert("Pessoa adicionada com sucesso")
+      alert("Informação adicionada com sucesso")
     }
     console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
   }
@@ -89,6 +89,10 @@ export class TableComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  deletePerson(){
+    alert(`Informação deletada com sucesso`)
   }
 
   /* +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
