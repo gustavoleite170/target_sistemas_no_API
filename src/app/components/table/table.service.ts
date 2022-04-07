@@ -10,7 +10,10 @@ import { Injectable } from '@angular/core';
 
 export class TableService {
 
-  generalUrl= "http://localhost:3001/people"
+  /* Random API to use table service on table component to generate information. 
+  The real API is on tgt_sistemas_back.json on table component folder  */
+
+  generalUrl= "https://pokeapi.co/api/v2/pokemon/ditto"
 
   constructor(private http: HttpClient) { }
 

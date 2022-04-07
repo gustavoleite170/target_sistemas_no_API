@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { FormComponent } from './components/form/form.component';
-import { DeleteComponent } from './components/delete/delete.component';
+import { TableComponent } from './components/table/table.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableComponent } from './components/table/table.component';
 import {MatTableModule} from '@angular/material/table';
 import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -24,8 +22,6 @@ import { MatCardModule } from  '@angular/material/card';
   declarations: [
     AppComponent,
     TableComponent,
-    FormComponent,
-    DeleteComponent
   ],
   imports: [
     BrowserModule,
