@@ -91,14 +91,13 @@ export class TableComponent implements OnInit {
   /* Delete information name and number */
 
   deletePerson(element){
-    console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
     const removed = this.data.filter((value) => value !== element)
     this.data = removed;
     this.dataSource = new MatTableDataSource(this.data);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator
     alert(`Informações de ${element.name} deletadas com sucesso`)
-    console.log(`${this.person.name} ${this.person.phoneNumber} ${this.data}`)
+    
   }
 
   /* +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+ */
